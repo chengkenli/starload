@@ -1,0 +1,25 @@
+-- chengken.starrocks_starload_cf definition
+
+CREATE TABLE `starrocks_starload_cf` (
+  `segment` decimal(10,1) NOT NULL COMMENT '版本号',
+  `loadbytes` int DEFAULT '104857600' COMMENT '导入最大大小',
+  `loadcount` int DEFAULT '1000000' COMMENT '导入最大行数',
+  `envoptions` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'StarRocks(Tencent Cloud) SR-ADHOC,StarRocks(Tencent Cloud) SR-QA' COMMENT '可选集群环境',
+  `sproptions` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT ',|	|^|;' COMMENT '可选分隔符',
+  `txtoptions` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'textfile,json' COMMENT '可选的文本格式',
+  `dialog` varchar(3000) DEFAULT '欢迎使用本程序！请仔细阅读以下声明：\n\n适用范围：本程序为StarRocks集群成员设计，\n       仅限用于将本地数据文件（csv/txt/json格式）导入集群，暂不支持excel（xlsx）格式文件。\n\n使用限制：\n    1.单文件大小不得超过100MB。\n    2.单文件行数不得超过100万行。\n\n点击【同意】即表示您已充分阅读、理解并承诺遵守上述所有条款' COMMENT '使用声明',
+  `state` int NOT NULL DEFAULT '0' COMMENT '状态'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+数据样例：
+INSERT INTO chengken.starrocks_starload_cf (segment, loadbytes, loadcount, envoptions, sproptions, txtoptions, dialog, state) VALUES(1.1, 104857600, 2000000, 'StarRocks(Tencent Cloud) SR-ADHOC,StarRocks(Tencent Cloud) SR-QA', ',|	|^|;', 'textfile,json', '欢迎使用本程序！请仔细阅读以下声明：
+
+适用范围：本程序为StarRocks集群成员设计，
+       仅限用于将本地数据文件（csv/txt/json格式）导入集群，暂不支持excel（xlsx）格式文件。
+
+使用限制：
+    1.单文件大小不得超过100MB。
+    2.单文件行数不得超过200万行。
+
+点击【同意】即表示您已充分阅读、理解并承诺遵守上述所有条款', 1);

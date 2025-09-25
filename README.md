@@ -55,10 +55,13 @@ starload.exe启动，弹出使用声明，限制条件
 
 配置和打包： 由于这里属于cs模式并且使用到gcc进行打包，代码里面下面的配置需要更改并打包：
 
-lark/lark_send_markdown.go  使用飞书代理，const larkproxy = "设置飞书代理"
+1.lark/lark_send_markdown.go  使用飞书代理，const larkproxy = "设置飞书代理"
 
-util/def.go  				指定集群默认连接地址，const ( StarRocksServer = "生产SR连接地址" StarRocksServerQa = "测试SR连接地址" )
+2.util/def.go  				  指定集群默认连接地址，const ( StarRocksServer = "生产SR连接地址" StarRocksServerQa = "测试SR连接地址" )
 
-init/init.go 				这里使用了一个mysql配置表：chengken.starrocks_starload_cf，这里管理着版本的可用性。
+3.conn/ConnectMySQL.go        修改mysql库的链接信息
+
+4.init/init.go 				  这里使用了一个mysql配置表：chengken.starrocks_starload_cf，这里管理着版本的可用性。
+
 
 
